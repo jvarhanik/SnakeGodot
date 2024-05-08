@@ -13,7 +13,7 @@ public partial class Game : Node2D
 	private float speed = 30;
 	private float moveTimer = 0;
 	private bool gameOver = false;
-
+	private GameOverMenu gameOverMenu;
 	private PackedScene snakePartScene = (PackedScene)ResourceLoader.Load("res://SnakePart.tscn");
 
 	public override void _Ready()
@@ -22,6 +22,13 @@ public partial class Game : Node2D
 		berry = GetNode<Node2D>("Berry");
 		RespawnBerry();
 		InitializeSnakeBody();
+		PackedScene gameOverMenuScene = (PackedScene)ResourceLoader.Load("res://GameOverMenu.tscn");
+		if (gameOverMenuScene != null)
+		{
+			gameOverMenu = (GameOverMenu)gameOverMenuScene.Instantiate();
+			AddChild(gameOverMenu);
+			gameOverMenu.Visible = false;
+		}
 	}
 
 	private void InitializeSnakeBody()
@@ -88,6 +95,8 @@ public partial class Game : Node2D
 		{
 			gameOver = true;
 			GD.Print("Game Over. Your Score: ", score, " - Out of bounds!");
+			gameOverMenu.UpdateScore(score);
+			gameOverMenu.Visible = true;
 			return;
 		}
 
@@ -103,6 +112,8 @@ public partial class Game : Node2D
 			if (snakeHead.Position == part.Position)
 			{
 				gameOver = true;
+				gameOverMenu.UpdateScore(score);
+				gameOverMenu.Visible = true;
 				GD.Print("Game Over. Your Score: ", score, " - Collision with body!");
 				break;
 			}
