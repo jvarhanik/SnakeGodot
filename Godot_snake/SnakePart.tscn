@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4usda3tadk42"]
+[gd_scene load_steps=3 format=3 uid="uid://b4usda3tadk42"]
 
-[ext_resource type="Texture2D" uid="uid://cgbj3whdhjajd" path="res://icon.svg" id="1_adgi0"]
+[ext_resource type="Texture2D" uid="uid://cy2uqni0ex0al" path="res://graphics/snakeTiles/snake_body.png" id="1_ya4w0"]
+[ext_resource type="Texture2D" uid="uid://c8n4kx7wfxugy" path="res://graphics/snakeTiles/lights/textures/circle.png" id="2_jsj84"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="SnakeBody" type="Sprite2D" parent="."]
 position = Vector2(1.3113e-06, 0)
-scale = Vector2(0.269, 0.248)
-texture = ExtResource("1_adgi0")
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_ya4w0")
+
+[node name="PointLight2D" type="PointLight2D" parent="SnakeBody"]
+energy = 0.11
+texture = ExtResource("2_jsj84")

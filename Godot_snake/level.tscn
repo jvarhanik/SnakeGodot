@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq6pe076sl8ty"]
+
+[ext_resource type="Script" path="res://Game.cs" id="1_530fo"]
+[ext_resource type="PackedScene" uid="uid://dh2dvdi2t82ny" path="res://background_tiles.tscn" id="3_dgemq"]
+[ext_resource type="Texture2D" uid="uid://badoahyn76ve8" path="res://graphics/Amethyst_Cluster_29_JE1_BE1.webp" id="3_dq0wu"]
+[ext_resource type="Texture2D" uid="uid://c4ywg7gw2wjqd" path="res://graphics/snakeTiles/snake_head.png" id="4_d47tw"]
+[ext_resource type="Texture2D" uid="uid://c8n4kx7wfxugy" path="res://graphics/snakeTiles/lights/textures/circle.png" id="4_n5kh3"]
+
+[sub_resource type="GDScript" id="GDScript_fd0u6"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_530fo")
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+texture_repeat = 2
+position = Vector2(580, 320)
+scale = Vector2(2, 2)
+script = SubResource("GDScript_fd0u6")
+
+[node name="Background_tiles" parent="." instance=ExtResource("3_dgemq")]
+
+[node name="Berry" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_dq0wu")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D" type="PointLight2D" parent="Berry"]
+color = Color(0.94902, 0.933333, 1, 1)
+texture = ExtResource("4_n5kh3")
+
+[node name="SnakeHead" type="Sprite2D" parent="."]
+position = Vector2(560, 320)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_d47tw")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.11517, 0.117352, 0.0952784, 1)
+energy = 4.71
+blend_mode = 1
